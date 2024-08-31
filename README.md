@@ -46,7 +46,7 @@ This is a simple Java implementation of the classic Minesweeper game.
 
 # Developer notes
 
-## Initialize project with Maven
+1. **Initialize project with Maven:**
 
     ```sh
     mvn archetype:generate -DgroupId=com.delose.minesweeper -DartifactId=minesweeper -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
