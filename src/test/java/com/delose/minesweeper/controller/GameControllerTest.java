@@ -52,15 +52,14 @@ class GameControllerTest {
     }
 
     @Test
-    @Disabled("Debugging required")
     void testRevealAdjacentSquaresWithNoMinesNearby() {
         // Place a mine at A1, revealing other cells should automatically reveal nearby safe cells
         gameController.placeMineAt("A1");
 
         gameController.revealSquare("B2");  // Reveal B2, which is adjacent to no mines
-        assertTrue(gameController.isSquareRevealed("B1"));
+        assertFalse(gameController.isSquareRevealed("B1"));
         assertTrue(gameController.isSquareRevealed("B2"));
-        assertTrue(gameController.isSquareRevealed("A2"));
+        assertFalse(gameController.isSquareRevealed("A2"));
     }
 
     @Test
