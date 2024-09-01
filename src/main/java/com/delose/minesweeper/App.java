@@ -59,6 +59,7 @@ public class App {
             }
 
             if (gameController.getGameStatus() != GameStatus.IN_PROGRESS) {
+                gameController.revealAllCells();
                 System.out.println(displayManager.renderMinefield());
                 System.out.println(displayManager.displayEndGameMessage());
                 break;

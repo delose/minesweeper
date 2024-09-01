@@ -158,4 +158,9 @@ public class GameController {
         int[] indices = convertPositionToIndices(position);
         minefield.placeMine(indices[0], indices[1]);
     }
+    public void revealAllCells() {
+        for (Cell cell : cellMap.values()) {
+            cell.reveal();  // Reveal all cells, whether they contain a mine or not
+        }
+    }
 }
