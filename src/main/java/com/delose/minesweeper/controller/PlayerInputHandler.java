@@ -30,7 +30,7 @@ public class PlayerInputHandler {
         }
 
         // Normalize input to uppercase
-        input = input.toUpperCase();
+        input = input.toUpperCase(java.util.Locale.ENGLISH);
 
         // Extract row and column
         char row = input.charAt(0);
@@ -38,7 +38,7 @@ public class PlayerInputHandler {
         try {
             col = Integer.parseInt(input.substring(1));
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("Invalid input format. Please use a valid grid position (e.g., A1).");
+            throw new IllegalArgumentException("Invalid input format. Please use a valid grid position (e.g., A1).", e);
         }
 
         // Validate row and column bounds
@@ -47,5 +47,4 @@ public class PlayerInputHandler {
         }
 
         return input;
-    }
-}
+    }}
