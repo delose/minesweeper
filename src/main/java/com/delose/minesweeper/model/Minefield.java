@@ -2,6 +2,8 @@ package com.delose.minesweeper.model;
 
 import java.util.Random;
 
+import com.delose.minesweeper.core.exception.GameInputException;
+
 /**
  * Represents a minefield for the Minesweeper game.
  * Handles the grid size, mine placement, and revealing squares.
@@ -17,11 +19,11 @@ public class Minefield {
      * 
      * @param size the size of the minefield (size x size grid)
      * @param numberOfMines the number of mines to be placed in the minefield
-     * @throws IllegalArgumentException if the number of mines exceeds the maximum allowed
+     * @throws GameInputException if the number of mines exceeds the maximum allowed
      */
     public Minefield(int size, int numberOfMines) {
         if (numberOfMines > size * size * MAX_MINE_RATIO) {
-            throw new IllegalArgumentException("Too many mines for the given grid size.");
+            throw new GameInputException("Too many mines for the given grid size.");
         }
         this.size = size;
         this.numberOfMines = numberOfMines;
@@ -117,7 +119,7 @@ public class Minefield {
      */
     private void validateCoordinates(int row, int col) {
         if (row < 0 || row >= size || col < 0 || col >= size) {
-            throw new IllegalArgumentException("Coordinates are out of bounds.");
+            throw new GameInputException("Coordinates are out of bounds.");
         }
     }
 

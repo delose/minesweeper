@@ -1,5 +1,6 @@
 package com.delose.minesweeper.controller;
 
+import com.delose.minesweeper.core.exception.GameInputException;
 import com.delose.minesweeper.model.GameStatus;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
@@ -78,7 +79,7 @@ class GameControllerTest {
     @Test
     void testInvalidPosition() {
         String invalidPosition = "Z9";
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+        Exception exception = assertThrows(GameInputException.class, () -> {
             gameController.revealSquare(invalidPosition);
         });
         assertEquals("Invalid input. Please select a valid square (e.g., A1).", exception.getMessage());

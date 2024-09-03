@@ -1,5 +1,6 @@
 package com.delose.minesweeper.controller;
 
+import com.delose.minesweeper.core.exception.GameInputException;
 import com.delose.minesweeper.model.Cell;
 import com.delose.minesweeper.model.GameStatus;
 import com.delose.minesweeper.model.Minefield;
@@ -114,7 +115,7 @@ public class GameController {
 
     private void validatePosition(String position) {
         if (!cellMap.containsKey(position)) {
-            throw new IllegalArgumentException("Invalid input. Please select a valid square (e.g., A1).");
+            throw new GameInputException("Invalid input. Please select a valid square (e.g., A1).");
         }
     }
 

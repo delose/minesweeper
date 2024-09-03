@@ -1,0 +1,6 @@
+minesweeper:
+  grid:
+    min-size: 1
+    max-size: 10
+  mines:
+    max-ratio: 0.35

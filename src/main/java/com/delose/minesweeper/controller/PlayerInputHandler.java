@@ -1,5 +1,7 @@
 package com.delose.minesweeper.controller;
 
+import com.delose.minesweeper.core.exception.GameInputException;
+
 /**
  * Handles and validates player input for the Minesweeper game.
  * Converts user input into a format that the GameController can process.
@@ -22,11 +24,11 @@ public class PlayerInputHandler {
      * 
      * @param input the player input (e.g., "A1")
      * @return the parsed input in a standardized format (e.g., "A1")
-     * @throws IllegalArgumentException if the input is invalid or out of bounds
+     * @throws GameInputException if the input is invalid or out of bounds
      */
     public String parseInput(String input) {
         if (input == null || input.length() < 2 || input.length() > 3) {
-            throw new IllegalArgumentException("Invalid input format. Please use a valid grid position (e.g., A1).");
+            throw new GameInputException("Invalid input format. Please use a valid grid position (e.g., A1).");
         }
 
         // Normalize input to uppercase
@@ -38,12 +40,12 @@ public class PlayerInputHandler {
         try {
             col = Integer.parseInt(input.substring(1));
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("Invalid input format. Please use a valid grid position (e.g., A1).");
+            throw new GameInputException("Invalid input format. Please use a valid grid position (e.g., A1).");
         }
 
         // Validate row and column bounds
         if (row < 'A' || row >= 'A' + gridSize || col < 1 || col > gridSize) {
-            throw new IllegalArgumentException("Input is out of bounds. Please select a valid grid position within the grid size.");
+            throw new GameInputException("Input is out of bounds. Please select a valid grid position within the grid size.");
         }
 
         return input;

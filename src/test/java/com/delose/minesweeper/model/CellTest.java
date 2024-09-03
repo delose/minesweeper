@@ -2,6 +2,9 @@ package com.delose.minesweeper.model;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import com.delose.minesweeper.core.exception.GameInputException;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class CellTest {
@@ -40,7 +43,7 @@ class CellTest {
 
     @Test
     void testInvalidAdjacentMinesCount() {
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+        Exception exception = assertThrows(GameInputException.class, () -> {
             cell.setAdjacentMinesCount(-1);
         });
         assertEquals("Adjacent mines count cannot be negative.", exception.getMessage());

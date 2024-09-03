@@ -3,10 +3,11 @@ package com.delose.minesweeper;
 import com.delose.minesweeper.controller.GameController;
 import com.delose.minesweeper.view.DisplayManager;
 import com.delose.minesweeper.controller.PlayerInputHandler;
-import com.delose.minesweeper.helper.GameComponents;
-import com.delose.minesweeper.helper.GameSetupHelper;
+import com.delose.minesweeper.core.exception.GameInputException;
+import com.delose.minesweeper.core.helper.GameComponents;
+import com.delose.minesweeper.core.helper.GameSetupHelper;
 import com.delose.minesweeper.model.GameStatus;
-import com.delose.minesweeper.util.logging.LoggerUtil;
+import com.delose.minesweeper.core.util.logging.LoggerUtil;
 
 import java.util.Scanner;
 
@@ -54,7 +55,7 @@ public class App {
             try {
                 String position = inputHandler.parseInput(input);
                 gameController.revealSquare(position);
-            } catch (IllegalArgumentException e) {
+            } catch (GameInputException e) {
                 LoggerUtil.error(e.getMessage());
                 continue;
             }

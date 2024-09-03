@@ -1,5 +1,7 @@
 package com.delose.minesweeper.model;
 
+import com.delose.minesweeper.core.exception.GameInputException;
+
 /**
  * Represents a single cell in the minefield.
  * A cell may contain a mine, be revealed, and have a count of adjacent mines.
@@ -76,11 +78,11 @@ public class Cell {
      * Sets the count of adjacent mines.
      * 
      * @param adjacentMinesCount the number of adjacent mines
-     * @throws IllegalArgumentException if adjacentMinesCount is negative
+     * @throws GameInputException if adjacentMinesCount is negative
      */
     public void setAdjacentMinesCount(int adjacentMinesCount) {
         if (adjacentMinesCount < 0) {
-            throw new IllegalArgumentException("Adjacent mines count cannot be negative.");
+            throw new GameInputException("Adjacent mines count cannot be negative.");
         }
         this.adjacentMinesCount = adjacentMinesCount;
     }

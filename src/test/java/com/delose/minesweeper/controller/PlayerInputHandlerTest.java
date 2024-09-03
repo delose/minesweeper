@@ -3,6 +3,8 @@ package com.delose.minesweeper.controller;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import com.delose.minesweeper.core.exception.GameInputException;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class PlayerInputHandlerTest {
@@ -17,7 +19,7 @@ class PlayerInputHandlerTest {
     @Test
     void testInvalidInputFormat() {
         String input = "Z9"; // Out of bounds, so it's valid format but invalid position
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+        Exception exception = assertThrows(GameInputException.class, () -> {
             inputHandler.parseInput(input);
         });
         assertEquals("Input is out of bounds. Please select a valid grid position within the grid size.", exception.getMessage());
@@ -26,7 +28,7 @@ class PlayerInputHandlerTest {
     @Test
     void testInputFormatTooShort() {
         String input = "A"; // Too short
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+        Exception exception = assertThrows(GameInputException.class, () -> {
             inputHandler.parseInput(input);
         });
         assertEquals("Invalid input format. Please use a valid grid position (e.g., A1).", exception.getMessage());
@@ -35,7 +37,7 @@ class PlayerInputHandlerTest {
     @Test
     void testInputFormatTooLong() {
         String input = "A123"; // Too long
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+        Exception exception = assertThrows(GameInputException.class, () -> {
             inputHandler.parseInput(input);
         });
         assertEquals("Invalid input format. Please use a valid grid position (e.g., A1).", exception.getMessage());

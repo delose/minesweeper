@@ -1,4 +1,4 @@
-package com.delose.minesweeper.helper;
+package com.delose.minesweeper.core.helper;
 
 import com.delose.minesweeper.controller.GameController;
 import com.delose.minesweeper.view.DisplayManager;

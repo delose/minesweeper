@@ -3,6 +3,8 @@ package com.delose.minesweeper.model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import com.delose.minesweeper.core.exception.GameInputException;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class MinefieldTest {
@@ -30,7 +32,7 @@ class MinefieldTest {
 
     @Test
     void testPlaceMineOutOfBounds() {
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+        Exception exception = assertThrows(GameInputException.class, () -> {
             minefield.placeMine(5, 5);  // Out of bounds
         });
         assertEquals("Coordinates are out of bounds.", exception.getMessage());
@@ -51,7 +53,7 @@ class MinefieldTest {
 
     @Test
     void testIsMineAtOutOfBounds() {
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+        Exception exception = assertThrows(GameInputException.class, () -> {
             minefield.isMineAt(4, 4);  // Out of bounds
         });
         assertEquals("Coordinates are out of bounds.", exception.getMessage());
@@ -70,7 +72,7 @@ class MinefieldTest {
 
     @Test
     void testCalculateAdjacentMinesOutOfBounds() {
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+        Exception exception = assertThrows(GameInputException.class, () -> {
             minefield.calculateAdjacentMines(4, 4);  // Out of bounds
         });
         assertEquals("Coordinates are out of bounds.", exception.getMessage());
