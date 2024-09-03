@@ -1,18 +1,23 @@
 #!/bin/bash
 
-# Script to build and run the Minesweeper game
+# Script to build, package, and run the Minesweeper game
 
 # Run tests
 mvn test
 
-# Build the project
-mvn clean compile
+# Check if tests were successful
+if [ $? -ne 0 ]; then
+  echo "Tests failed. Please check for errors and try again."
+  exit 1
+fi
 
-# Check if build was successful
+# Clean, compile, and package the project
+mvn clean compile package
+
+# Check if build and package were successful
 if [ $? -eq 0 ]; then
-  # Run the game
-  mvn exec:java -Dexec.mainClass="com.delose.minesweeper.App"
+  # Run the game using the packaged JAR file
+  java -jar target/minesweeper-1.0-SNAPSHOT.jar
 else
   echo "Build failed. Please check for errors and try again."
 fi
-

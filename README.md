@@ -40,13 +40,17 @@ This is a simple Java implementation of the classic Minesweeper game.
 
 1. **Run the game using the provided script:**
 
+### run_minesweeper.sh (for Linux/MacOS)
     ```sh
     ./run_minesweeper.sh
     ```
 
-   This script will automatically compile the project and run the Minesweeper game.
+### run_minesweeper.bat (for Windows)
+    ```sh
+    ./run_minesweeper.bat
+    ```
 
-   **Note:** The script is written in Bash and is compatible with Linux, Unix, and macOS. If you're using Windows, you can run the script using Git Bash or Windows Subsystem for Linux (WSL). It will not run in Command Prompt or PowerShell.
+   This script will automatically compile the project and run the Minesweeper game.
 
 2. **Build the project:**
 
