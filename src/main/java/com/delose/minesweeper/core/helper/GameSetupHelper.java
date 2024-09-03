@@ -8,6 +8,7 @@ import com.delose.minesweeper.core.util.config.GameConfig;
 import com.delose.minesweeper.core.util.logging.LoggerUtil;
 
 import java.util.InputMismatchException;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 /**
@@ -32,7 +33,11 @@ public class GameSetupHelper {
                 gridSize = promptGridSize(scanner);
                 numberOfMines = promptNumberOfMines(scanner, gridSize);
                 break;  // Break the loop when valid inputs are provided
-            } catch (GameInputException | InputMismatchException e) {
+            } catch (NoSuchElementException e) {
+                LoggerUtil.error(e.getMessage());
+                scanner.nextLine(); // Clear the invalid input
+                throw new GameInputException("Invalid input. Please enter valid integers.");
+            } catch (GameInputException e) {
                 LoggerUtil.error(e.getMessage());
                 scanner.nextLine(); // Clear the invalid input
             }
