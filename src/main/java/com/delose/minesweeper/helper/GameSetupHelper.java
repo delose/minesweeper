@@ -3,6 +3,7 @@ package com.delose.minesweeper.helper;
 import com.delose.minesweeper.controller.GameController;
 import com.delose.minesweeper.view.DisplayManager;
 import com.delose.minesweeper.controller.PlayerInputHandler;
+import com.delose.minesweeper.util.logging.LoggerUtil;
 
 import java.util.Scanner;
 
@@ -30,7 +31,7 @@ public class GameSetupHelper {
     }
 
     private int promptGridSize(Scanner scanner) {
-        System.out.println("Welcome to Minesweeper!");
+        LoggerUtil.info("Welcome to Minesweeper!");
         System.out.print("Enter the size of the grid (e.g., 4 for a 4x4 grid): ");
         return scanner.nextInt();
     }

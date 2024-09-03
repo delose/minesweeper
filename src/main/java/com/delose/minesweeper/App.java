@@ -6,6 +6,7 @@ import com.delose.minesweeper.controller.PlayerInputHandler;
 import com.delose.minesweeper.helper.GameComponents;
 import com.delose.minesweeper.helper.GameSetupHelper;
 import com.delose.minesweeper.model.GameStatus;
+import com.delose.minesweeper.util.logging.LoggerUtil;
 
 import java.util.Scanner;
 
@@ -30,7 +31,7 @@ public class App {
         if (promptReplay(new Scanner(System.in))) {
             main(args); // Restart the game
         } else {
-            System.out.println("Thank you for playing Minesweeper!");
+            LoggerUtil.info("Thank you for playing Minesweeper!");
         }
     }
 
@@ -46,7 +47,7 @@ public class App {
         PlayerInputHandler inputHandler = components.getInputHandler();
 
         while (gameController.getGameStatus() == GameStatus.IN_PROGRESS) {
-            System.out.println(displayManager.renderMinefield());
+            LoggerUtil.info(displayManager.renderMinefield());
             System.out.print("Select a square to reveal (e.g., A1): ");
             String input = scanner.nextLine();
 
@@ -54,14 +55,14 @@ public class App {
                 String position = inputHandler.parseInput(input);
                 gameController.revealSquare(position);
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                LoggerUtil.error(e.getMessage());
                 continue;
             }
 
             if (gameController.getGameStatus() != GameStatus.IN_PROGRESS) {
                 gameController.revealAllCells();
-                System.out.println(displayManager.renderMinefield());
-                System.out.println(displayManager.displayEndGameMessage());
+                LoggerUtil.info(displayManager.renderMinefield());
+                LoggerUtil.info(displayManager.displayEndGameMessage());
                 break;
             }
         }
