@@ -17,18 +17,16 @@ public class GameSetupHelper {
      * @return a GameComponents object containing the initialized game components
      */
     public GameComponents initializeGameComponents() {
-        try (Scanner scanner = new Scanner(System.in)) {
+        Scanner scanner = new Scanner(System.in);
 
-            int gridSize = promptGridSize(scanner);
-            int numberOfMines = promptNumberOfMines(scanner, gridSize);
-            scanner.close();
-    
-            GameController gameController = new GameController(gridSize, numberOfMines);
-            DisplayManager displayManager = new DisplayManager(gameController);
-            PlayerInputHandler inputHandler = new PlayerInputHandler(gridSize);
-    
-            return new GameComponents(gameController, displayManager, inputHandler);
-        }
+        int gridSize = promptGridSize(scanner);
+        int numberOfMines = promptNumberOfMines(scanner, gridSize);
+
+        GameController gameController = new GameController(gridSize, numberOfMines);
+        DisplayManager displayManager = new DisplayManager(gameController);
+        PlayerInputHandler inputHandler = new PlayerInputHandler(gridSize);
+
+        return new GameComponents(gameController, displayManager, inputHandler);
     }
 
     private int promptGridSize(Scanner scanner) {

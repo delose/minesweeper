@@ -13,12 +13,7 @@ import java.util.Scanner;
  * The main class for running the Minesweeper game.
  * Initializes game components, handles user input, and manages the game loop.
  */
-public final class App {
-
-    // Private constructor to prevent instantiation
-    private App() {
-        throw new UnsupportedOperationException("Utility class");
-    }
+public class App {
 
     /**
      * The entry point of the Minesweeper game.
@@ -45,33 +40,33 @@ public final class App {
      * @param components the container object holding the game components
      */
     private static void runGameLoop(GameComponents components) {
-        try (Scanner scanner = new Scanner(System.in)) {
-            GameController gameController = components.getGameController();
-            DisplayManager displayManager = components.getDisplayManager();
-            PlayerInputHandler inputHandler = components.getInputHandler();
-    
-            while (gameController.getGameStatus() == GameStatus.IN_PROGRESS) {
+        Scanner scanner = new Scanner(System.in);
+        GameController gameController = components.getGameController();
+        DisplayManager displayManager = components.getDisplayManager();
+        PlayerInputHandler inputHandler = components.getInputHandler();
+
+        while (gameController.getGameStatus() == GameStatus.IN_PROGRESS) {
+            System.out.println(displayManager.renderMinefield());
+            System.out.print("Select a square to reveal (e.g., A1): ");
+            String input = scanner.nextLine();
+
+            try {
+                String position = inputHandler.parseInput(input);
+                gameController.revealSquare(position);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                continue;
+            }
+
+            if (gameController.getGameStatus() != GameStatus.IN_PROGRESS) {
+                gameController.revealAllCells();
                 System.out.println(displayManager.renderMinefield());
-                System.out.print("Select a square to reveal (e.g., A1): ");
-                String input = scanner.nextLine();
-    
-                try {
-                    String position = inputHandler.parseInput(input);
-                    gameController.revealSquare(position);
-                } catch (IllegalArgumentException e) {
-                    System.out.println(e.getMessage());
-                    continue;
-                }
-    
-                if (gameController.getGameStatus() != GameStatus.IN_PROGRESS) {
-                    gameController.revealAllCells();
-                    System.out.println(displayManager.renderMinefield());
-                    System.out.println(displayManager.displayEndGameMessage());
-                    break;
-                }
+                System.out.println(displayManager.displayEndGameMessage());
+                break;
             }
         }
     }
+
     /**
      * Prompts the user to replay the game or exit.
      *
@@ -80,9 +75,7 @@ public final class App {
      */
     private static boolean promptReplay(Scanner scanner) {
         System.out.print("Press any key to play again, or type 'exit' to quit: ");
-        try (Scanner s = scanner) {
-            String replayInput = scanner.nextLine();
-            return !"exit".equalsIgnoreCase(replayInput);
-        }
+        String replayInput = scanner.nextLine();
+        return !replayInput.equalsIgnoreCase("exit");
     }
 }

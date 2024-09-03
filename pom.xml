@@ -40,27 +40,6 @@
           </includes>
         </configuration>
       </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-pmd-plugin</artifactId>
-        <version>3.15.0</version>
-        <configuration>
-          <linkXRef>false</linkXRef>
-          <printFailingErrors>true</printFailingErrors>
-          <failOnViolation>true</failOnViolation> <!-- Optional: Fail the build if violations are found -->
-          <rulesets>
-            <ruleset>/rulesets/java/quickstart.xml</ruleset> <!-- Default ruleset -->
-          </rulesets>
-        </configuration>
-        <executions>
-          <execution>
-            <goals>
-              <goal>check</goal>
-            </goals>
-            <phase>verify</phase>
-          </execution>
-        </executions>
-      </plugin>
     </plugins>
   </build>
 </project>
