@@ -38,41 +38,48 @@ This is a simple Java implementation of the classic Minesweeper game.
 
 ## Running the Game
 
-1. **Run the game using the provided script:**
+1. **Run the game using the provided script, run_minesweeper.sh (for Linux/MacOS):**
 
-### run_minesweeper.sh (for Linux/MacOS)
     ```sh
     ./run_minesweeper.sh
     ```
 
-### run_minesweeper.bat (for Windows)
+2. **Run the game using the provided script, run_minesweeper.bat (for Windows):**
+
     ```sh
     ./run_minesweeper.bat
     ```
 
-   This script will automatically compile the project and run the Minesweeper game.
+- These scripts will automatically compile the project and run the Minesweeper game.
 
-2. **Build the project:**
+3. **Build the project:**
 
     ```sh
     mvn clean compile
     ```
 
-3. **Run the game:**
+4. **Run the game:**
 
     ```sh
     mvn exec:java -Dexec.mainClass="com.delose.minesweeper.App"
     ```
 
-4. **Run the tests:**
+5. **Run the tests using the provided script, test_minesweeper.sh (for Windows):**
 
     ```sh
-    mvn test
+    ./test_minesweeper.sh
+    ```
+
+
+6. **Run the tests using the provided script, test_minesweeper.bat (for Linux/MacOS):**
+
+    ```sh
+    ./test_minesweeper.bat
     ```
 
 ## Developer Notes
 
-    **Initialize project with Maven:**
+1. **Initialize project with Maven:**
 
     ```sh
     mvn archetype:generate -DgroupId=com.delose.minesweeper -DartifactId=minesweeper -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
@@ -84,6 +91,13 @@ This is a simple Java implementation of the classic Minesweeper game.
 - **Code Readability:** Emphasis was placed on writing clean and maintainable code, with meaningful variable names, and methods that perform a single task.
 - **Small Methods:** Methods were kept small and focused, generally adhering to a limit of 50 lines or fewer, to ensure clarity and ease of understanding.
 - **Single Responsibility Principle (SRP):** Each class and method is designed to have a single responsibility, making the code easier to maintain and extend.
+- **Refactoring for Efficiency:** Methods were refactored to reduce their complexity and improve efficiency. For example, large methods were split into smaller, more manageable ones, and control flow structures were simplified to reduce the number of break and continue statements.
+- **Custom Exception Handling:** Custom exceptions were introduced to handle specific error cases, such as invalid user inputs. This made the error handling more robust and allowed the application to continue running smoothly even when errors occurred.
+- **Logger Implementation:** A logging utility was implemented using SLF4J to replace System.out.println calls, ensuring that log messages are consistent, configurable, and easily manageable. This also allows for better monitoring and debugging of the application in different environments.
+- **Configuration Management:** Hardcoded values like grid size limits and mine ratio were moved to a properties YAML file, making the application more flexible and easier to configure without changing the source code.
+- **Modular Design with Game Engine:** The core game logic was decoupled into a GameEngine class, making the system more modular and easier to extend. This design allows for future features to be added with minimal impact on the existing codebase.
+- **Nested Test Classes:** Test cases were organized using @Nested classes and @DisplayName annotations, improving test readability and structure. This approach also made it easier to group related tests and clearly define test scenarios.
+- **Robust Input Validation:** Input validation was enhanced to handle a variety of edge cases, including non-numeric inputs and out-of-range values. This ensures that the game can handle user input gracefully and continue running without crashing.
 
 ## Design Patterns Used
 
