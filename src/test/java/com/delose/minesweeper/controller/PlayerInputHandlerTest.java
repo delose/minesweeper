@@ -3,6 +3,7 @@ package com.delose.minesweeper.controller;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import com.delose.minesweeper.controller.impl.PlayerInputHandlerImpl;
 import com.delose.minesweeper.core.exception.GameInputException;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -13,7 +14,7 @@ class PlayerInputHandlerTest {
 
     @BeforeEach
     void setUp() {
-        inputHandler = new PlayerInputHandler(4); // Assume a 4x4 grid
+        inputHandler = new PlayerInputHandlerImpl(4); // Assume a 4x4 grid
     }
 
     @Test

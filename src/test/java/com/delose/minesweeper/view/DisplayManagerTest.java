@@ -4,7 +4,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.delose.minesweeper.controller.GameController;
+import com.delose.minesweeper.controller.impl.GameControllerImpl;
 import com.delose.minesweeper.model.GameStatus;
+import com.delose.minesweeper.view.impl.DisplayManagerImpl;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -15,8 +17,8 @@ class DisplayManagerTest {
 
     @BeforeEach
     void setUp() {
-        gameController = new GameController(4, 3); // A 4x4 game with 3 mines
-        displayManager = new DisplayManager(gameController);
+        gameController = new GameControllerImpl(4, 3); // A 4x4 game with 3 mines
+        displayManager = new DisplayManagerImpl(gameController);
     }
 
     @Test

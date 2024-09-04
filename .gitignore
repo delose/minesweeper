@@ -3,3 +3,5 @@
 
 /target
 /setup_remote.sh
+
+dependency-reduced-pom.xml

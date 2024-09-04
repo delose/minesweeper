@@ -2,7 +2,10 @@ package com.delose.minesweeper.core.helper;
 
 import com.delose.minesweeper.controller.GameController;
 import com.delose.minesweeper.view.DisplayManager;
+import com.delose.minesweeper.view.impl.DisplayManagerImpl;
 import com.delose.minesweeper.controller.PlayerInputHandler;
+import com.delose.minesweeper.controller.impl.GameControllerImpl;
+import com.delose.minesweeper.controller.impl.PlayerInputHandlerImpl;
 import com.delose.minesweeper.core.exception.GameInputException;
 import com.delose.minesweeper.core.util.config.GameConfig;
 import com.delose.minesweeper.core.util.logging.LoggerUtil;
@@ -43,9 +46,9 @@ public class GameSetupHelper {
             }
         }
     
-        GameController gameController = new GameController(gridSize, numberOfMines);
-        DisplayManager displayManager = new DisplayManager(gameController);
-        PlayerInputHandler inputHandler = new PlayerInputHandler(gridSize);
+        GameController gameController = new GameControllerImpl(gridSize, numberOfMines);
+        DisplayManager displayManager = new DisplayManagerImpl(gameController);
+        PlayerInputHandler inputHandler = new PlayerInputHandlerImpl(gridSize);
     
         return new GameComponents(gameController, displayManager, inputHandler);
     }

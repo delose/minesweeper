@@ -77,6 +77,17 @@ This is a simple Java implementation of the classic Minesweeper game.
     ./test_minesweeper.bat
     ```
 
+7. **Run the code coverage using the provided script, coverage_minesweeper.sh (for Windows):**
+
+    ```sh
+    ./coverage_minesweeper.sh
+    ```
+8. **Run the code coverage using the provided script, coverage_minesweeper.bat (for Linux/MacOS):**
+
+    ```sh
+    ./coverage_minesweeper.bat
+    ```
+
 ## Developer Notes
 
 1. **Initialize project with Maven:**
@@ -95,9 +106,9 @@ This is a simple Java implementation of the classic Minesweeper game.
 - **Custom Exception Handling:** Custom exceptions were introduced to handle specific error cases, such as invalid user inputs. This made the error handling more robust and allowed the application to continue running smoothly even when errors occurred.
 - **Logger Implementation:** A logging utility was implemented using SLF4J to replace System.out.println calls, ensuring that log messages are consistent, configurable, and easily manageable. This also allows for better monitoring and debugging of the application in different environments.
 - **Configuration Management:** Hardcoded values like grid size limits and mine ratio were moved to a properties YAML file, making the application more flexible and easier to configure without changing the source code.
-- **Modular Design with Game Engine:** The core game logic was decoupled into a GameEngine class, making the system more modular and easier to extend. This design allows for future features to be added with minimal impact on the existing codebase.
 - **Nested Test Classes:** Test cases were organized using @Nested classes and @DisplayName annotations, improving test readability and structure. This approach also made it easier to group related tests and clearly define test scenarios.
 - **Robust Input Validation:** Input validation was enhanced to handle a variety of edge cases, including non-numeric inputs and out-of-range values. This ensures that the game can handle user input gracefully and continue running without crashing.
+- **Automated Code Coverage Reports::** Scripts are provided to automatically run tests and generate code coverage reports, making it easy to monitor and maintain high test coverage.
 
 ## Design Patterns Used
 
@@ -105,7 +116,8 @@ This is a simple Java implementation of the classic Minesweeper game.
   - **Model (`Minefield`, `Cell`):** Handles the game's data and business logic.
   - **View (`DisplayManager`):** Manages the display of the game grid and user interaction.
   - **Controller (`GameController`):** Handles user input and updates the model and view accordingly.
-  - **Helper Class:** The `GameSetupHelper` class is used to encapsulate setup and initialization logic, promoting separation of concerns and improving the readability of the main method.
+- **Singleton:** The `GameController` class is implemented as a Singleton to ensure that there's only one instance of the controller throughout the game's lifecycle. This ensures that the game state is consistent and prevents multiple instances from interfering with each other.
+- **Dependency Injection:** The `GameController` class uses dependency injection to inject the `Minefield` and `DisplayManager` instances, promoting loose coupling and making the code more flexible and testable.
 
 
 ## Limitations

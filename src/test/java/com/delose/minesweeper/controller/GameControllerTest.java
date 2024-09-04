@@ -1,5 +1,6 @@
 package com.delose.minesweeper.controller;
 
+import com.delose.minesweeper.controller.impl.GameControllerImpl;
 import com.delose.minesweeper.core.exception.GameInputException;
 import com.delose.minesweeper.model.GameStatus;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,7 +15,7 @@ class GameControllerTest {
 
     @BeforeEach
     void setUp() {
-        gameController = new GameController(2, 1); // A 2x2 grid with 1 mine
+        gameController = new GameControllerImpl(2, 1); // A 2x2 grid with 1 mine
     }
 
     @Test
