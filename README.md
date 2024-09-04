@@ -103,28 +103,28 @@ To run the scripts in Git Bash:
     mvn exec:java -Dexec.mainClass="com.delose.minesweeper.App"
     ```
 
-5. **Run the tests using the provided script, test_minesweeper.sh (for Windows):**
-
-    ```sh
-    ./test_minesweeper.sh
-    ```
-
-
-6. **Run the tests using the provided script, test_minesweeper.bat (for Linux/MacOS/ Git Bash):**
+5. **Run the tests using the provided script, test_minesweeper.bat (for Windows):**
 
     ```sh
     ./test_minesweeper.bat
     ```
 
-7. **Run the code coverage using the provided script, coverage_minesweeper.sh (for Windows):**
+
+6. **Run the tests using the provided script, test_minesweeper.sh (for Linux/MacOS/ Git Bash):**
 
     ```sh
-    ./coverage_minesweeper.sh
+    ./test_minesweeper.sh
     ```
-8. **Run the code coverage using the provided script, coverage_minesweeper.bat (for Linux/MacOS/ Git Bash):**
+
+7. **Run the code coverage using the provided script, coverage_minesweeper.bat (for Windows):**
 
     ```sh
     ./coverage_minesweeper.bat
+    ```
+8. **Run the code coverage using the provided script, coverage_minesweeper.sh (for Linux/MacOS/ Git Bash):**
+
+    ```sh
+    ./coverage_minesweeper.sh
     ```
 
 ## Developer Notes
