@@ -20,7 +20,10 @@ public interface GameController {
 
     boolean isSquareRevealed(String position);
 
+    // only used for testing
     void placeMineAt(String position);
 
     void revealAllCells();
+
+    void placeMinesRandmly();
 }

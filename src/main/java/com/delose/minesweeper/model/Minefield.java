@@ -4,7 +4,6 @@ import java.util.Random;
 
 import com.delose.minesweeper.core.exception.GameInputException;
 import com.delose.minesweeper.core.util.config.GameConfig;
-import java.util.Arrays;
 
 /**
  * Represents a minefield for the Minesweeper game.
@@ -30,9 +29,6 @@ public class Minefield {
         this.size = size;
         this.numberOfMines = numberOfMines;
         this.mineGrid = new boolean[size][size];
-        for (int i = 0; i < size; i++) {
-            Arrays.fill(this.mineGrid[i], false);
-        }
     }
 
     public int getSize() {
@@ -82,18 +78,6 @@ public class Minefield {
     public boolean isMineAt(int row, int col) {
         validateCoordinates(row, col);
         return mineGrid[row][col];
-    }
-
-    /**
-     * Reveals the square at the specified location.
-     * 
-     * @param row the row index
-     * @param col the column index
-     */
-    public void revealSquare(int row, int col) {
-        validateCoordinates(row, col);
-        // Logic to reveal the square
-        // If square is empty, calculate adjacent mines
     }
 
     /**

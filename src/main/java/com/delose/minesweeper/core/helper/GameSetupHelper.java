@@ -47,6 +47,7 @@ public class GameSetupHelper {
         }
     
         GameController gameController = new GameControllerImpl(gridSize, numberOfMines);
+        gameController.placeMinesRandmly();
         DisplayManager displayManager = new DisplayManagerImpl(gameController);
         PlayerInputHandler inputHandler = new PlayerInputHandlerImpl(gridSize);
     

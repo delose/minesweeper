@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# Call the environment check script
+source ./check_environment.sh
+
+# If the check passes, continue with the rest of the script
+echo "Running the main script..."
+
 # Script to build, package, and run the Minesweeper game
 
 # Run tests

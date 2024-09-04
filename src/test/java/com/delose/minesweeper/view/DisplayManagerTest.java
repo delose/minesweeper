@@ -1,17 +1,15 @@
 package com.delose.minesweeper.view;
 
+import com.delose.minesweeper.controller.GameController;
+import com.delose.minesweeper.model.GameStatus;
+import com.delose.minesweeper.view.impl.DisplayManagerImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import com.delose.minesweeper.controller.GameController;
-import com.delose.minesweeper.model.GameStatus;
-import com.delose.minesweeper.view.impl.DisplayManagerImpl;
-
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 class DisplayManagerTest {
 
@@ -24,34 +22,76 @@ class DisplayManagerTest {
         displayManager = new DisplayManagerImpl(gameController);
     }
 
-    @Test
-    void testDisplayAfterReveal() {
-        gameController.revealSquare("A1");
-        String displayAfterReveal = displayManager.renderMinefield();
-        assertFalse(displayAfterReveal.contains("_A1"), "The revealed cell should not display as '_'.");
-    }
+    @Nested
+    @DisplayName("renderMinefield method")
+    class RenderMinefieldTests {
 
-    @Test
-    void testDisplayWinningMessage() {
-        gameController.revealSquare("A2");
-        gameController.revealSquare("A3");
-        gameController.revealSquare("A4");
-        gameController.revealSquare("B1");
-        gameController.revealSquare("B2");
-        // Continue revealing until the game is won
-        if (gameController.getGameStatus() == GameStatus.WON) {
-            String winningMessage = displayManager.displayEndGameMessage();
-            assertEquals("Congratulations, you have won the game!", winningMessage, "Winning message should be displayed correctly.");
+        @Test
+        @DisplayName("should display the initial state of the minefield with all cells unrevealed")
+        void testRenderMinefield_Initial() {
+            // Given
+            when(gameController.getMinefieldSize()).thenReturn(4);
+            when(gameController.isSquareRevealed(anyString())).thenReturn(false);
+
+            // When
+            String minefieldDisplay = displayManager.renderMinefield();
+
+            // Then
+            assertTrue(minefieldDisplay.contains("_ _ _ _"));
+            assertTrue(minefieldDisplay.contains("A"));
+            assertTrue(minefieldDisplay.contains("B"));
+            assertTrue(minefieldDisplay.contains("C"));
+            assertTrue(minefieldDisplay.contains("D"));
         }
-    }
 
-    @Test
-    void testDisplayLosingMessage() {
-        gameController.placeMineAt("A1");
-        gameController.revealSquare("A1");
-        if (gameController.getGameStatus() == GameStatus.LOST) {
-            String losingMessage = displayManager.displayEndGameMessage();
-            assertEquals("Oh no, you detonated a mine! Game over.", losingMessage, "Losing message should be displayed correctly.");
+        @Test
+        @DisplayName("should display revealed cells with adjacent mine counts")
+        void testRenderMinefield_RevealedCells() {
+            // Given
+            when(gameController.getMinefieldSize()).thenReturn(4);
+            when(gameController.isSquareRevealed("A1")).thenReturn(true);
+            when(gameController.isSquareRevealed("B2")).thenReturn(true);
+            when(gameController.getAdjacentMinesCount("A1")).thenReturn(1);
+            when(gameController.getAdjacentMinesCount("B2")).thenReturn(2);
+
+            // When
+            String minefieldDisplay = displayManager.renderMinefield();
+
+            // Then
+            assertTrue(minefieldDisplay.contains("1"));  // Display the adjacent mine count
+            assertTrue(minefieldDisplay.contains("2"));  // Display the adjacent mine count
+            assertFalse(minefieldDisplay.contains("_A1"));
+            assertFalse(minefieldDisplay.contains("_B2"));
+        }
+
+        @Test
+        @DisplayName("should display a mine when a mine is revealed")
+        void testRenderMinefield_RevealMine() {
+            // Given
+            when(gameController.getMinefieldSize()).thenReturn(4);
+            when(gameController.isSquareRevealed("A1")).thenReturn(true);
+            when(gameController.isMineAt("A1")).thenReturn(true);
+
+            // When
+            String minefieldDisplay = displayManager.renderMinefield();
+
+            // Then
+            assertTrue(minefieldDisplay.contains("*"));  // Display the mine
+            assertFalse(minefieldDisplay.contains("_A1"));
+        }
+
+        @Test
+        @DisplayName("should display unrevealed cells as underscores")
+        void testRenderMinefield_UnrevealedCells() {
+            // Given
+            when(gameController.getMinefieldSize()).thenReturn(4);
+            when(gameController.isSquareRevealed("A1")).thenReturn(false);
+
+            // When
+            String minefieldDisplay = displayManager.renderMinefield();
+
+            // Then
+            assertTrue(minefieldDisplay.contains("_ _ _ _"));
         }
     }
 

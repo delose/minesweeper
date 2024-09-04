@@ -26,6 +26,9 @@ public class GameControllerImpl implements GameController {
         this.gameStatus = GameStatus.IN_PROGRESS;
         this.cellMap = new HashMap<>();
         initializeCells(gridSize);
+    }
+
+    public void placeMinesRandmly() {
         minefield.placeMines();
     }
 
@@ -72,6 +75,8 @@ public class GameControllerImpl implements GameController {
     
         if (checkWinCondition()) {
             gameStatus = GameStatus.WON;
+        } else {
+            gameStatus = GameStatus.IN_PROGRESS;
         }
     }
 

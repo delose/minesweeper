@@ -21,6 +21,21 @@ This is a simple Java implementation of the classic Minesweeper game.
 - Detects game over conditions (mine triggered).
 - Detects win condition (all non-mine squares revealed).
 
+## Software Requirements
+
+To build and run this project, you need the following software installed:
+
+- **Java Development Kit (JDK) 8 or higher**: The project is built using Java. Make sure the `java` command is available in your system's PATH.
+- **Apache Maven 3.6.3 or higher**: Maven is used to manage dependencies, build the project, and run tests. You can download Maven from [https://maven.apache.org/download.cgi](https://maven.apache.org/download.cgi).
+
+### How to Check if Maven is Installed
+
+- You can check if Maven is installed by running the following command in your terminal:
+
+    ```bash
+    mvn -version
+    ```
+
 ## Installation
 
 1. **Clone the repository:**
