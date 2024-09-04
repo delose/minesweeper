@@ -35,6 +35,30 @@ To build and run this project, you need the following software installed:
     ```bash
     mvn -version
     ```
+## Preferred Environment for Running Scripts
+
+### Running Scripts on Windows
+
+While you can run the provided batch scripts (`.bat`) on Command Prompt in Windows, it is **strongly recommended** to use **Git Bash** as the preferred environment for running these scripts. Git Bash provides a more Unix-like shell experience on Windows, ensuring better compatibility and behavior of shell scripts, especially when working with tools and commands that are commonly used in a Unix/Linux environment.
+
+### Why Git Bash?
+
+- **Compatibility**: Git Bash supports many Unix/Linux commands and script behaviors that may not be fully supported in Command Prompt.
+- **Consistent Behavior**: Shell scripts written for Unix/Linux environments are more likely to run without issues on Git Bash than on Command Prompt.
+- **Easier Scripting**: Git Bash simplifies script writing and execution by offering a more powerful and flexible scripting environment compared to Command Prompt.
+
+### How to Install Git Bash
+
+If you don't have Git Bash installed, you can download and install it from [Git for Windows](https://gitforwindows.org/).
+
+### Running Scripts in Git Bash
+
+To run the scripts in Git Bash:
+1. **Open Git Bash**: Right-click on the desktop or in the folder where your scripts are located, and select "Git Bash Here".
+2. **Run the Script**: Use the `./` prefix to run the bash scripts. For example:
+   ```bash
+   ./run_minesweeper.sh
+   ```
 
 ## Installation
 
@@ -53,7 +77,7 @@ To build and run this project, you need the following software installed:
 
 ## Running the Game
 
-1. **Run the game using the provided script, run_minesweeper.sh (for Linux/MacOS):**
+1. **Run the game using the provided script, run_minesweeper.sh (for Linux/MacOS/ Git Bash):**
 
     ```sh
     ./run_minesweeper.sh
@@ -86,7 +110,7 @@ To build and run this project, you need the following software installed:
     ```
 
 
-6. **Run the tests using the provided script, test_minesweeper.bat (for Linux/MacOS):**
+6. **Run the tests using the provided script, test_minesweeper.bat (for Linux/MacOS/ Git Bash):**
 
     ```sh
     ./test_minesweeper.bat
@@ -97,7 +121,7 @@ To build and run this project, you need the following software installed:
     ```sh
     ./coverage_minesweeper.sh
     ```
-8. **Run the code coverage using the provided script, coverage_minesweeper.bat (for Linux/MacOS):**
+8. **Run the code coverage using the provided script, coverage_minesweeper.bat (for Linux/MacOS/ Git Bash):**
 
     ```sh
     ./coverage_minesweeper.bat
