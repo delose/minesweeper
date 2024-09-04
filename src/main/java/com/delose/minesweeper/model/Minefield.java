@@ -3,6 +3,8 @@ package com.delose.minesweeper.model;
 import java.util.Random;
 
 import com.delose.minesweeper.core.exception.GameInputException;
+import com.delose.minesweeper.core.util.config.GameConfig;
+import java.util.Arrays;
 
 /**
  * Represents a minefield for the Minesweeper game.
@@ -10,7 +12,6 @@ import com.delose.minesweeper.core.exception.GameInputException;
  */
 public class Minefield {
 
-    private static final double MAX_MINE_RATIO = 0.35;
     private final int size;
     private final int numberOfMines;
     private final boolean[][] mineGrid;
@@ -22,12 +23,16 @@ public class Minefield {
      * @throws GameInputException if the number of mines exceeds the maximum allowed
      */
     public Minefield(int size, int numberOfMines) {
-        if (numberOfMines > size * size * MAX_MINE_RATIO) {
+        GameConfig config = GameConfig.getInstance();
+        if (numberOfMines > size * size * config.getMaxMineRatio()) {
             throw new GameInputException("Too many mines for the given grid size.");
         }
         this.size = size;
         this.numberOfMines = numberOfMines;
         this.mineGrid = new boolean[size][size];
+        for (int i = 0; i < size; i++) {
+            Arrays.fill(this.mineGrid[i], false);
+        }
     }
 
     public int getSize() {

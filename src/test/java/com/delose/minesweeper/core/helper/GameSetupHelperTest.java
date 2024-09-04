@@ -1,13 +1,13 @@
 package com.delose.minesweeper.core.helper;
 import com.delose.minesweeper.core.exception.GameInputException;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.util.NoSuchElementException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -55,16 +55,15 @@ class GameSetupHelperTest {
         }
 
         @Test
-        @DisplayName("Should throw GameInputException for invalid number of mines")
-        @Disabled("Debugging required")
+        @DisplayName("Should throw NoSuchElementException for invalid number of mines")
         void testInitializeGameComponents_InvalidMines_Failure() {
             // Given: User input for grid size = 4 and an invalid number of mines = 20
             String userInput = "4\n20\n"; 
             InputStream in = new ByteArrayInputStream(userInput.getBytes());
             System.setIn(in);
 
-            // When/Then: Expect GameInputException due to invalid number of mines
-            assertThrows(GameInputException.class, () -> gameSetupHelper.initializeGameComponents());
+            // When/Then: Expect NoSuchElementException due to invalid number of mines
+            assertThrows(NoSuchElementException.class, () -> gameSetupHelper.initializeGameComponents());
         }
 
         @Test

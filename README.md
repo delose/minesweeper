@@ -108,7 +108,7 @@ This is a simple Java implementation of the classic Minesweeper game.
 - **Configuration Management:** Hardcoded values like grid size limits and mine ratio were moved to a properties YAML file, making the application more flexible and easier to configure without changing the source code.
 - **Nested Test Classes:** Test cases were organized using @Nested classes and @DisplayName annotations, improving test readability and structure. This approach also made it easier to group related tests and clearly define test scenarios.
 - **Robust Input Validation:** Input validation was enhanced to handle a variety of edge cases, including non-numeric inputs and out-of-range values. This ensures that the game can handle user input gracefully and continue running without crashing.
-- **Automated Code Coverage Reports::** Scripts are provided to automatically run tests and generate code coverage reports, making it easy to monitor and maintain high test coverage.
+- **Automated Code Coverage Reports:** Scripts are provided to automatically run tests and generate code coverage reports, making it easy to monitor and maintain high test coverage.
 
 ## Design Patterns Used
 

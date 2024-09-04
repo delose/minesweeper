@@ -24,7 +24,7 @@ public class GameSetupHelper {
      *
      * @return a GameComponents object containing the initialized game components
      */
-    public GameComponents initializeGameComponents() {
+    public GameComponents initializeGameComponents() throws GameInputException, NoSuchElementException {
         Scanner scanner = new Scanner(System.in);
     
         int gridSize;
