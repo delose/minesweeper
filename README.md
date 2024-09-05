@@ -75,7 +75,7 @@ To run the scripts in Git Bash:
     mvn clean install
     ```
 
-## Running the Game
+## Running the Game Using the Provided Scripts
 
 1. **Run the game using the provided script, run_minesweeper.sh (for Linux/MacOS/ Git Bash):**
 
@@ -91,37 +91,47 @@ To run the scripts in Git Bash:
 
 - These scripts will automatically compile the project and run the Minesweeper game.
 
-3. **Build the project:**
+## Building and Running the Game Manually
+
+1. **Build the project:**
 
     ```sh
-    mvn clean compile
+    mvn clean compile package
     ```
 
-4. **Run the game:**
+2. **Run the game using Maven:**
 
     ```sh
     mvn exec:java -Dexec.mainClass="com.delose.minesweeper.App"
     ```
 
-5. **Run the tests using the provided script, test_minesweeper.bat (for Windows):**
+3. **Run the game using Java (Note: This game will run only after the game is built):**
+
+    ```sh
+    java -jar target/minesweeper-1.0-SNAPSHOT.jar
+    ```
+
+## Running the Tests
+
+1. **Run the tests using the provided script, test_minesweeper.bat (for Windows):**
 
     ```sh
     ./test_minesweeper.bat
     ```
 
 
-6. **Run the tests using the provided script, test_minesweeper.sh (for Linux/MacOS/ Git Bash):**
+2. **Run the tests using the provided script, test_minesweeper.sh (for Linux/MacOS/ Git Bash):**
 
     ```sh
     ./test_minesweeper.sh
     ```
 
-7. **Run the code coverage using the provided script, coverage_minesweeper.bat (for Windows):**
+3. **Run the code coverage using the provided script, coverage_minesweeper.bat (for Windows):**
 
     ```sh
     ./coverage_minesweeper.bat
     ```
-8. **Run the code coverage using the provided script, coverage_minesweeper.sh (for Linux/MacOS/ Git Bash):**
+4. **Run the code coverage using the provided script, coverage_minesweeper.sh (for Linux/MacOS/ Git Bash):**
 
     ```sh
     ./coverage_minesweeper.sh
