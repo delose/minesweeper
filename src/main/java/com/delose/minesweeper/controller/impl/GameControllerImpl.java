@@ -7,6 +7,7 @@ import java.util.Queue;
 
 import com.delose.minesweeper.controller.GameController;
 import com.delose.minesweeper.core.exception.GameInputException;
+import com.delose.minesweeper.core.util.config.MessageProvider;
 import com.delose.minesweeper.model.Cell;
 import com.delose.minesweeper.model.GameStatus;
 import com.delose.minesweeper.model.Minefield;
@@ -121,7 +122,7 @@ public class GameControllerImpl implements GameController {
 
     private void validatePosition(String position) {
         if (!cellMap.containsKey(position)) {
-            throw new GameInputException("Invalid input. Please select a valid square (e.g., A1).");
+            throw new GameInputException(MessageProvider.getMessage("game.invalidInputSquare"));
         }
     }
 

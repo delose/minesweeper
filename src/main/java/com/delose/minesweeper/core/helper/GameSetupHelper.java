@@ -8,6 +8,7 @@ import com.delose.minesweeper.controller.impl.GameControllerImpl;
 import com.delose.minesweeper.controller.impl.PlayerInputHandlerImpl;
 import com.delose.minesweeper.core.exception.GameInputException;
 import com.delose.minesweeper.core.util.config.GameConfig;
+import com.delose.minesweeper.core.util.config.MessageProvider;
 import com.delose.minesweeper.core.util.logging.LoggerUtil;
 
 import java.util.InputMismatchException;
@@ -39,7 +40,7 @@ public class GameSetupHelper {
             } catch (NoSuchElementException e) {
                 LoggerUtil.error(e.getMessage());
                 scanner.nextLine(); // Clear the invalid input
-                throw new GameInputException("Invalid input. Please enter valid integers.");
+                throw new GameInputException(MessageProvider.getMessage("game.invalidInputInteger"));
             } catch (GameInputException e) {
                 LoggerUtil.error(e.getMessage());
                 scanner.nextLine(); // Clear the invalid input
@@ -57,17 +58,17 @@ public class GameSetupHelper {
     private int promptGridSize(Scanner scanner) {
         GameConfig config = GameConfig.getInstance();
         
-        LoggerUtil.info("Welcome to Minesweeper!");
-        System.out.print("Enter the size of the grid (e.g., 4 for a 4x4 grid, maximum is " + config.getMaxGridSize() + "): ");
+        LoggerUtil.info(MessageProvider.getMessage("game.welcomeMessage"));
+        System.out.print(MessageProvider.getMessage("game.enterSizeGrid") + config.getMaxGridSize() + "): ");
         
         if (!scanner.hasNextInt()) {
-            throw new InputMismatchException("Invalid input. Please enter an integer value for the grid size.");
+            throw new InputMismatchException(MessageProvider.getMessage("game.invalidIntegerGridSize"));
         }
 
         int gridSize = scanner.nextInt();
 
         if (gridSize < config.getMinGridSize() || gridSize > config.getMaxGridSize()) {
-            throw new GameInputException("Invalid grid size. Please enter a size between " + config.getMinGridSize() + " and " + config.getMaxGridSize() + ".");
+            throw new GameInputException(MessageProvider.getMessage("game.invalidGridSizeBetween") + config.getMinGridSize() + " and " + config.getMaxGridSize() + ".");
         }
 
         return gridSize;
@@ -77,16 +78,16 @@ public class GameSetupHelper {
         GameConfig config = GameConfig.getInstance();
         int maxMines = (int) (gridSize * gridSize * config.getMaxMineRatio());
         
-        System.out.print("Enter the number of mines to place on the grid (maximum is " + maxMines + "): ");
+        System.out.print(MessageProvider.getMessage("game.enterNumberOfMines") + maxMines + "): ");
         
         if (!scanner.hasNextInt()) {
-            throw new InputMismatchException("Invalid input. Please enter an integer value for the number of mines.");
+            throw new InputMismatchException(MessageProvider.getMessage("game.invalidInputNumberOfMines"));
         }
     
         int numberOfMines = scanner.nextInt();
     
         if (numberOfMines < config.getMinGridSize() || numberOfMines > maxMines) {
-            throw new GameInputException("Invalid number of mines. Please enter a number between " + config.getMinGridSize() + " and " + maxMines + ".");
+            throw new GameInputException(MessageProvider.getMessage("game.invalidNumberOfMines") + config.getMinGridSize() + " and " + maxMines + ".");
         }
     
         return numberOfMines;

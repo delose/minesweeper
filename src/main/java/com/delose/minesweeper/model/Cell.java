@@ -1,6 +1,7 @@
 package com.delose.minesweeper.model;
 
 import com.delose.minesweeper.core.exception.GameInputException;
+import com.delose.minesweeper.core.util.config.MessageProvider;
 
 /**
  * Represents a single cell in the minefield.
@@ -82,7 +83,7 @@ public class Cell {
      */
     public void setAdjacentMinesCount(int adjacentMinesCount) {
         if (adjacentMinesCount < 0) {
-            throw new GameInputException("Adjacent mines count cannot be negative.");
+            throw new GameInputException(MessageProvider.getMessage("cell.adjacentMinesCannotBeNegative"));
         }
         this.adjacentMinesCount = adjacentMinesCount;
     }

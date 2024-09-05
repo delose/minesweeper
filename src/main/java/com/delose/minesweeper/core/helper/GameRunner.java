@@ -3,6 +3,7 @@ package com.delose.minesweeper.core.helper;
 import com.delose.minesweeper.controller.GameController;
 import com.delose.minesweeper.model.GameStatus;
 import com.delose.minesweeper.core.exception.GameInputException;
+import com.delose.minesweeper.core.util.config.MessageProvider;
 import com.delose.minesweeper.core.util.logging.LoggerUtil;
 import com.delose.minesweeper.view.DisplayManager;
 import com.delose.minesweeper.controller.PlayerInputHandler;
@@ -37,7 +38,7 @@ public class GameRunner {
 
         while (gameController.getGameStatus() == GameStatus.IN_PROGRESS) {
             LoggerUtil.info(displayManager.renderMinefield());
-            System.out.print("Select a square to reveal (e.g., A1): ");
+            System.out.print(MessageProvider.getMessage("game.selectedSquare"));
             String input = scanner.nextLine();
 
             try {
@@ -63,8 +64,8 @@ public class GameRunner {
      * @return true if the user wants to replay, false otherwise
      */
     public boolean promptReplay() {
-        System.out.print("Press any key to play again, or type 'exit' to quit: ");
+        System.out.print(MessageProvider.getMessage("game.playAgain"));
         String replayInput = scanner.nextLine();
-        return !replayInput.equalsIgnoreCase("exit");
+        return !replayInput.equalsIgnoreCase(MessageProvider.getMessage("game.exit"));
     }
 }

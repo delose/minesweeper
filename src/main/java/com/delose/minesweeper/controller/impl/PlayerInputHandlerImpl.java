@@ -2,6 +2,7 @@ package com.delose.minesweeper.controller.impl;
 
 import com.delose.minesweeper.controller.PlayerInputHandler;
 import com.delose.minesweeper.core.exception.GameInputException;
+import com.delose.minesweeper.core.util.config.MessageProvider;
 
 public class PlayerInputHandlerImpl implements PlayerInputHandler {
 
@@ -25,7 +26,7 @@ public class PlayerInputHandlerImpl implements PlayerInputHandler {
      */
     public String parseInput(String input) {
         if (input == null || input.length() < 2 || input.length() > 3) {
-            throw new GameInputException("Invalid input format. Please use a valid grid position (e.g., A1).");
+            throw new GameInputException(MessageProvider.getMessage("game.invalidInputGridPosition"));
         }
 
         // Normalize input to uppercase
@@ -37,12 +38,12 @@ public class PlayerInputHandlerImpl implements PlayerInputHandler {
         try {
             col = Integer.parseInt(input.substring(1));
         } catch (NumberFormatException e) {
-            throw new GameInputException("Invalid input format. Please use a valid grid position (e.g., A1).");
+            throw new GameInputException(MessageProvider.getMessage("game.invalidInputGridPosition"));
         }
 
         // Validate row and column bounds
         if (row < 'A' || row >= 'A' + gridSize || col < 1 || col > gridSize) {
-            throw new GameInputException("Input is out of bounds. Please select a valid grid position within the grid size.");
+            throw new GameInputException(MessageProvider.getMessage("game.inputOutOfBounds"));
         }
 
         return input;

@@ -1,6 +1,7 @@
 package com.delose.minesweeper.view.impl;
 
 import com.delose.minesweeper.controller.GameController;
+import com.delose.minesweeper.core.util.config.MessageProvider;
 import com.delose.minesweeper.model.GameStatus;
 import com.delose.minesweeper.view.DisplayManager;
 
@@ -31,30 +32,30 @@ public class DisplayManagerImpl implements DisplayManager {
         int gridSize = gameController.getMinefieldSize();
     
         // Build the column headers
-        display.append("  ");
+        display.append(MessageProvider.getMessage("display.header"));
         for (int col = 1; col <= gridSize; col++) {
-            display.append(col).append(" ");
+            display.append(col).append(MessageProvider.getMessage("display.col"));
         }
-        display.append("\n");
+        display.append(MessageProvider.getMessage("display.newline"));
     
         // Build each row of the minefield
         for (char row = 'A'; row < 'A' + gridSize; row++) {
-            display.append(row).append(" ");
+            display.append(row).append(MessageProvider.getMessage("display.col"));
             for (int col = 1; col <= gridSize; col++) {
                 String position = "" + row + col;
                 if (gameController.isSquareRevealed(position)) {
                     // Check if the revealed square contains a mine
                     if (gameController.isMineAt(position)) {
-                        display.append("* ");  // Display * for mines
+                        display.append(MessageProvider.getMessage("display.mineSpace"));  // Display * for mines
                     } else {
                         int adjacentMines = gameController.getAdjacentMinesCount(position);
-                        display.append(adjacentMines).append(" ");
+                        display.append(adjacentMines).append(MessageProvider.getMessage("display.col"));
                     }
                 } else {
-                    display.append("_ ");
+                    display.append(MessageProvider.getMessage("display.unrevealed"));
                 }
             }
-            display.append("\n");
+            display.append(MessageProvider.getMessage("display.newline"));
         }
     
         return display.toString();
@@ -67,9 +68,9 @@ public class DisplayManagerImpl implements DisplayManager {
      */
     public String displayEndGameMessage() {
         if (gameController.getGameStatus() == GameStatus.WON) {
-            return "Congratulations, you have won the game!";
+            return MessageProvider.getMessage("game.congratulations");
         } else if (gameController.getGameStatus() == GameStatus.LOST) {
-            return "Oh no, you detonated a mine! Game over.";
+            return MessageProvider.getMessage("game.gameOver");
         }
         return "";
     }

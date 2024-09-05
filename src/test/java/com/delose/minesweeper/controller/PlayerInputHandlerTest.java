@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import com.delose.minesweeper.controller.impl.PlayerInputHandlerImpl;
 import com.delose.minesweeper.core.exception.GameInputException;
+import com.delose.minesweeper.core.util.config.MessageProvider;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -39,7 +40,7 @@ class PlayerInputHandlerTest {
 
             // When & Then: Expecting GameInputException to be thrown
             assertThrows(GameInputException.class, () -> inputHandler.parseInput(input), 
-                "Invalid input format. Please use a valid grid position (e.g., A1).");
+                MessageProvider.getMessage("game.invalidInputGridPosition"));
         }
 
         @Test
@@ -50,7 +51,7 @@ class PlayerInputHandlerTest {
 
             // When & Then: Expecting GameInputException to be thrown
             assertThrows(GameInputException.class, () -> inputHandler.parseInput(input), 
-                "Invalid input format. Please use a valid grid position (e.g., A1).");
+                MessageProvider.getMessage("game.invalidInputGridPosition"));
         }
 
         @Test
@@ -61,7 +62,7 @@ class PlayerInputHandlerTest {
 
             // When & Then: Expecting GameInputException to be thrown
             assertThrows(GameInputException.class, () -> inputHandler.parseInput(input), 
-                "Invalid input format. Please use a valid grid position (e.g., A1).");
+                MessageProvider.getMessage("game.invalidInputGridPosition"));
         }
 
         @Test
@@ -72,7 +73,7 @@ class PlayerInputHandlerTest {
 
             // When & Then: Expecting GameInputException to be thrown
             assertThrows(GameInputException.class, () -> inputHandler.parseInput(input), 
-                "Invalid input format. Please use a valid grid position (e.g., A1).");
+                MessageProvider.getMessage("game.invalidInputGridPosition"));
         }
 
         @Test
@@ -83,7 +84,7 @@ class PlayerInputHandlerTest {
 
             // When & Then: Expecting GameInputException to be thrown
             assertThrows(GameInputException.class, () -> inputHandler.parseInput(input), 
-                "Input is out of bounds. Please select a valid grid position within the grid size.");
+                MessageProvider.getMessage("game.inputOutOfBounds"));
         }
 
         @Test
@@ -94,7 +95,7 @@ class PlayerInputHandlerTest {
 
             // When & Then: Expecting GameInputException to be thrown
             assertThrows(GameInputException.class, () -> inputHandler.parseInput(input), 
-                "Input is out of bounds. Please select a valid grid position within the grid size.");
+                MessageProvider.getMessage("game.inputOutOfBounds"));
         }
     }
 }

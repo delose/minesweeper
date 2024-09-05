@@ -3,6 +3,7 @@ package com.delose.minesweeper;
 import com.delose.minesweeper.core.helper.GameComponents;
 import com.delose.minesweeper.core.helper.GameRunner;
 import com.delose.minesweeper.core.helper.GameSetupHelper;
+import com.delose.minesweeper.core.util.config.MessageProvider;
 import com.delose.minesweeper.core.util.logging.LoggerUtil;
 
 /**
@@ -27,7 +28,7 @@ public class App {
         if (gameRunner.promptReplay()) {
             main(args); // Restart the game
         } else {
-            LoggerUtil.info("Thank you for playing Minesweeper!");
+            LoggerUtil.info(MessageProvider.getMessage("game.thankYouMessage"));
         }
     }
 }
