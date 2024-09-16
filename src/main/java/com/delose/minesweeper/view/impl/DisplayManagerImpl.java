@@ -34,7 +34,7 @@ public class DisplayManagerImpl implements DisplayManager {
         // Build the column headers
         display.append(MessageProvider.getMessage("display.header"));
         for (int col = 1; col <= gridSize; col++) {
-            display.append(col).append(MessageProvider.getMessage("display.col"));
+            display.append(String.format("%-3d", col));
         }
         display.append(MessageProvider.getMessage("display.newline"));
     
@@ -46,13 +46,13 @@ public class DisplayManagerImpl implements DisplayManager {
                 if (gameController.isSquareRevealed(position)) {
                     // Check if the revealed square contains a mine
                     if (gameController.isMineAt(position)) {
-                        display.append(MessageProvider.getMessage("display.mineSpace"));  // Display * for mines
+                        display.append(String.format("%-3s", MessageProvider.getMessage("display.mine")));  // Display * for mines
                     } else {
                         int adjacentMines = gameController.getAdjacentMinesCount(position);
-                        display.append(adjacentMines).append(MessageProvider.getMessage("display.col"));
+                        display.append(String.format("%-3d", adjacentMines));
                     }
                 } else {
-                    display.append(MessageProvider.getMessage("display.unrevealed"));
+                    display.append(String.format("%-3s", MessageProvider.getMessage("display.unrevealed")));
                 }
             }
             display.append(MessageProvider.getMessage("display.newline"));

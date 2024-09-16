@@ -1,6 +1,6 @@
 minesweeper:
   grid:
     min-size: 1
-    max-size: 10
+    max-size: 15
   mines:
     max-ratio: 0.35
