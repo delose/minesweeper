@@ -11,7 +11,6 @@ import com.delose.minesweeper.core.util.config.GameConfig;
 import com.delose.minesweeper.core.util.config.MessageProvider;
 import com.delose.minesweeper.core.util.logging.LoggerUtil;
 
-import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
@@ -37,11 +36,7 @@ public class GameSetupHelper {
                 gridSize = promptGridSize(scanner);
                 numberOfMines = promptNumberOfMines(scanner, gridSize);
                 break;  // Break the loop when valid inputs are provided
-            } catch (NoSuchElementException e) {
-                LoggerUtil.error(e.getMessage());
-                scanner.nextLine(); // Clear the invalid input
-                throw new GameInputException(MessageProvider.getMessage("game.invalidInputInteger"));
-            } catch (GameInputException e) {
+            } catch (NoSuchElementException | GameInputException e) {
                 LoggerUtil.error(e.getMessage());
                 scanner.nextLine(); // Clear the invalid input
             }
@@ -62,7 +57,7 @@ public class GameSetupHelper {
         System.out.print(MessageProvider.getMessage("game.enterSizeGrid") + config.getMaxGridSize() + "): ");
         
         if (!scanner.hasNextInt()) {
-            throw new InputMismatchException(MessageProvider.getMessage("game.invalidIntegerGridSize"));
+            throw new GameInputException(MessageProvider.getMessage("game.invalidIntegerGridSize"));
         }
 
         int gridSize = scanner.nextInt();
@@ -81,7 +76,7 @@ public class GameSetupHelper {
         System.out.print(MessageProvider.getMessage("game.enterNumberOfMines") + maxMines + "): ");
         
         if (!scanner.hasNextInt()) {
-            throw new InputMismatchException(MessageProvider.getMessage("game.invalidInputNumberOfMines"));
+            throw new GameInputException(MessageProvider.getMessage("game.invalidInputNumberOfMines"));
         }
     
         int numberOfMines = scanner.nextInt();

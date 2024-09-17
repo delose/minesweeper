@@ -51,7 +51,7 @@ class GameSetupHelperTest {
             System.setIn(in);
 
             // When/Then: Expect GameInputException due to invalid grid size
-            assertThrows(GameInputException.class, () -> gameSetupHelper.initializeGameComponents());
+            assertThrows(NoSuchElementException.class, () -> gameSetupHelper.initializeGameComponents());
         }
 
         @Test
@@ -75,7 +75,7 @@ class GameSetupHelperTest {
             System.setIn(in);
 
             // When/Then: Expect GameInputException due to non-numeric grid size
-            assertThrows(GameInputException.class, () -> gameSetupHelper.initializeGameComponents());
+            assertThrows(NoSuchElementException.class, () -> gameSetupHelper.initializeGameComponents());
         }
     }
 }
