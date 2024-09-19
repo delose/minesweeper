@@ -11,6 +11,8 @@ import com.delose.minesweeper.core.util.config.GameConfig;
 import com.delose.minesweeper.core.util.config.MessageProvider;
 import com.delose.minesweeper.core.util.logging.LoggerUtil;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
@@ -72,15 +74,20 @@ public class GameSetupHelper {
     private int promptNumberOfMines(Scanner scanner, int gridSize) {
         GameConfig config = GameConfig.getInstance();
         int maxMines = (int) (gridSize * gridSize * config.getMaxMineRatio());
-        
+    
         System.out.print(MessageProvider.getMessage("game.enterNumberOfMines") + maxMines + "): ");
         
-        if (!scanner.hasNextInt()) {
+        if (!scanner.hasNextBigDecimal()) {
             throw new GameInputException(MessageProvider.getMessage("game.invalidInputNumberOfMines"));
         }
     
-        int numberOfMines = scanner.nextInt();
+        // Read BigDecimal input from the scanner
+        BigDecimal input = scanner.nextBigDecimal();
+        
+        // Round input: if 1.4 round to 1, 1.5 and above round to 2
+        int numberOfMines = input.setScale(0, RoundingMode.HALF_UP).intValue();
     
+        // Validate number of mines
         if (numberOfMines < config.getMinGridSize() || numberOfMines > maxMines) {
             throw new GameInputException(MessageProvider.getMessage("game.invalidNumberOfMines") + config.getMinGridSize() + " and " + maxMines + ".");
         }
