@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
 
 class DisplayManagerTest {
@@ -37,11 +38,11 @@ class DisplayManagerTest {
             String minefieldDisplay = displayManager.renderMinefield();
 
             // Then
-            assertTrue(minefieldDisplay.contains("_ _ _ _"));
-            assertTrue(minefieldDisplay.contains("A"));
-            assertTrue(minefieldDisplay.contains("B"));
-            assertTrue(minefieldDisplay.contains("C"));
-            assertTrue(minefieldDisplay.contains("D"));
+            assertTrue(minefieldDisplay.contains("_  _  _  _ "));
+            assertTrue(minefieldDisplay.contains("A  "));
+            assertTrue(minefieldDisplay.contains("B  "));
+            assertTrue(minefieldDisplay.contains("C  "));
+            assertTrue(minefieldDisplay.contains("D  "));
         }
 
         @Test
@@ -91,7 +92,7 @@ class DisplayManagerTest {
             String minefieldDisplay = displayManager.renderMinefield();
 
             // Then
-            assertTrue(minefieldDisplay.contains("_ _ _ _"));
+            assertTrue(minefieldDisplay.contains("_  _  _  _ "));
         }
     }
 
