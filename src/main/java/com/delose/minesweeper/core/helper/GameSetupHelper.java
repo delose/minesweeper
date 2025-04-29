@@ -10,6 +10,7 @@ import com.delose.minesweeper.core.exception.GameInputException;
 import com.delose.minesweeper.core.util.config.GameConfig;
 import com.delose.minesweeper.core.util.config.MessageProvider;
 import com.delose.minesweeper.core.util.logging.LoggerUtil;
+import com.delose.minesweeper.core.util.validator.GameValidator;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -47,7 +48,7 @@ public class GameSetupHelper {
         GameController gameController = new GameControllerImpl(gridSize, numberOfMines);
         gameController.placeMinesRandmly();
         DisplayManager displayManager = new DisplayManagerImpl(gameController);
-        PlayerInputHandler inputHandler = new PlayerInputHandlerImpl(gridSize);
+        PlayerInputHandler inputHandler = new PlayerInputHandlerImpl(gridSize, new GameValidator());
     
         return new GameComponents(gameController, displayManager, inputHandler);
     }

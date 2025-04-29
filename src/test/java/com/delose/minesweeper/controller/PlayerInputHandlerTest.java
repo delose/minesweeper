@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import com.delose.minesweeper.controller.impl.PlayerInputHandlerImpl;
 import com.delose.minesweeper.core.exception.GameInputException;
 import com.delose.minesweeper.core.util.config.MessageProvider;
+import com.delose.minesweeper.core.util.validator.GameValidator;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -17,7 +18,7 @@ class PlayerInputHandlerTest {
 
     @BeforeEach
     void setUp() {
-        inputHandler = new PlayerInputHandlerImpl(4); // Assume a 4x4 grid
+        inputHandler = new PlayerInputHandlerImpl(4, new GameValidator()); // Assume a 4x4 grid
     }
 
     @Test
